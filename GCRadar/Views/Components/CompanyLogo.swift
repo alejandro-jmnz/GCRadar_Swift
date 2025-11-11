@@ -7,12 +7,27 @@
 
 import SwiftUI
 
+let LOGO_DEV_PUBLIC_KEY = "pk_Ui1Nf0MJTy6rKfHgxxBEpg"
+
 struct CompanyLogo: View {
+    let name: String
+
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        AsyncImage(url: URL(string: "https://img.logo.dev/\(name)?token=\(LOGO_DEV_PUBLIC_KEY)")) { image in
+            image
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+        } placeholder: {
+            ProgressView()
+        }
+        .frame(width: 40, height: 40)
     }
 }
-
-#Preview {
-    CompanyLogo()
+/*
+// Using URLSession for direct download
+func downloadCompanyLogo(name: String) async throws -> Data {
+    let url = URL(string: "https://img.logo.dev/\(name)?token=\(LOGO_DEV_PUBLIC_KEY)")!
+    let (data, _) = try await URLSession.shared.data(from: url)
+    return data
 }
+*/

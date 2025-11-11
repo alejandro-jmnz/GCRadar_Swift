@@ -21,7 +21,7 @@ struct FlightDetailView: View {
                         Text("Origen: \(flight.origin)")
                         Text("Destino: \(flight.destination)")
                     }
-                    Spacer()
+                    CompanyLogo(name: domain(for: flight.airline)) 
                     Image(systemName: "star") // Icono de favoritos
                 }
                 .padding()

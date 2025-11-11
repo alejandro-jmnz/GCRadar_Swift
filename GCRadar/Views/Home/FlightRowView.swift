@@ -12,14 +12,12 @@ struct FlightRowView: View {
     
     var body: some View {
         HStack {
-            VStack {
-                Text(flight.departure_time)
-                Text(flight.number)
-                Text(flight.destination)
-            }
-            Spacer()
-            Text(flight.airline)
+            Text(flight.departure_time)
+            Text(flight.number)
+            Text(flight.destination)
+            CompanyLogo(name: domain(for: flight.airline)) // Usamos la funcion para obtener el dominio de la aerolinea y poder pasarlo a la API
         }
+        .padding(.vertical, 8)
     }
 }
 

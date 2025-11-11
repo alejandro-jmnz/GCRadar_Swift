@@ -16,7 +16,7 @@ struct DeparturesView: View {
             number: "AEA9018",
             origin: "GRAN CANARIA (LPA)",
             destination: "MADRID (MAD)",
-            airline: "Binter"
+            airline: "Binter Canarias"
         ),
         Flight(
             departure_time: "05:45",
@@ -39,12 +39,24 @@ struct DeparturesView: View {
     
     var body: some View {
         NavigationView {
-            List(flights) { flight in
-                NavigationLink(destination: FlightDetailView(flight: flight)) {
-                    FlightRowView(flight: flight)
+            VStack {
+                // Encabezado de la lista
+                HStack {
+                    Text("Hora")
+                    // TODO Anadir estilos
+                    Text("N° de vuelo")
+                    Text("Destino")
+                    Text("Aerolínea")
+                }
+                
+                // Lista
+                List(flights) { flight in
+                    NavigationLink(destination: FlightDetailView(flight: flight)) {
+                        FlightRowView(flight: flight)
+                    }
                 }
             }
-            .navigationTitle(Text("Departures"))
+            .navigationTitle(Text("Salidas")) // TODO Cambiarlo por el logo de la app
         }
     }
     

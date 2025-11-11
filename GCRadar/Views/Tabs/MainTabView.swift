@@ -5,6 +5,9 @@
 //  Created by alumno on 6/11/25.
 //
 
+
+// PANTALLA PRINCIPAL
+
 import SwiftUI
 
 struct MainTabView: View {
