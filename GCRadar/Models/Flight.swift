@@ -17,7 +17,7 @@ struct Flight: Identifiable {
     
     struct FlightIdentifiers {
         let iata: String
-        let icao: String
+        let icao: String // TODO Quitarlo
     }
     
     struct LiveInfo {
@@ -29,7 +29,7 @@ struct Flight: Identifiable {
     
     struct AircraftInfo {
         let model: String
-        let registration: String
+        let registration: String // Matricula
     }
     
     struct AirlineInfo {
@@ -48,4 +48,38 @@ struct Flight: Identifiable {
     let live: LiveInfo
     let airline: AirlineInfo
     let aircraft: AircraftInfo
+}
+
+
+
+// MARK: - Computed Properties
+extension Flight {
+    var duration: TimeInterval? {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "HH:mm"
+        formatter.timeZone = TimeZone(secondsFromGMT: 0) // importante: evita errores con zonas horarias
+        
+        guard let departureDate = formatter.date(from: departureTime),
+              let arrivalDate = formatter.date(from: arrivalTime) else {
+            return nil
+        }
+        
+        var duration = arrivalDate.timeIntervalSince(departureDate)
+        
+        // Si la llegada es el día siguiente (por ejemplo, 23:00 → 02:00)
+        if duration < 0 {
+            duration += 24 * 60 * 60
+        }
+        
+        return duration
+    }
+    
+    // Devuelve la duración formateada como "3h 15m"
+    var durationString: String {
+        guard let duration = duration else { return "N/A" }
+        let totalMinutes = Int(duration / 60)
+        let hours = totalMinutes / 60
+        let minutes = totalMinutes % 60
+        return "\(hours)h \(minutes)m"
+    }
 }

@@ -18,6 +18,11 @@ struct MainTabView: View {
                     Label("Salidas", systemImage: "airplane.departure")
                 }
             
+            ArrivalsView()
+                .tabItem {
+                    Label("Llegadas", systemImage: "airplane.arrival")
+                }
+            
             // TODO poner las otras vistas
         }
     }

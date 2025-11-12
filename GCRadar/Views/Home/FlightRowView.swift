@@ -11,10 +11,22 @@ struct FlightRowView: View {
     let flight: Flight
     
     var body: some View {
+        
         HStack {
-            Text(flight.departureTime)
+            if flight.origin.iata == "LPA" {
+                Text(flight.departureTime)
+            } else if flight.destination.iata == "LPA" {
+                Text(flight.arrivalTime)
+            } // TODO anadir un else para los que solo sobrevuelan GC
+            
             Text(flight.identifiers.iata)
-            Text(flight.destination.airport)
+            if flight.origin.iata == "LPA" {
+                Text(flight.destination.airport)
+                Text(flight.durationString)
+            } else if flight.destination.iata == "LPA" {
+                Text(flight.origin.airport)
+            } // TODO anadir un else para los que solo sobrevuelan GC
+            
             CompanyLogo(name: domain(for: flight.airline.name)) // Usamos la funcion para obtener el dominio de la aerolinea y poder pasarlo a la API
         }
         .padding(.vertical, 8)

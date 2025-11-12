@@ -66,7 +66,7 @@ struct DeparturesView: View {
             VStack {
                 // Encabezado de la lista
                 HStack {
-                    Text("Hora")
+                    Text("Hora de salida")
                     // TODO Anadir estilos
                     Text("N° de vuelo")
                     Text("Destino")
@@ -74,13 +74,14 @@ struct DeparturesView: View {
                 }
                 
                 // Lista
-                List(flights) { flight in
+                List(flights.filter { $0.origin.iata == "LPA" }) { flight in // Muestra los vuelos con origen en Gran Canaria
                     NavigationLink(destination: FlightDetailView(flight: flight)) {
                         FlightRowView(flight: flight)
                     }
                 }
+
             }
-            .navigationTitle(Text("Salidas")) // TODO Cambiarlo por el logo de la app
+            .navigationTitle(Text("Salidas")) // TODO anadir el logo de la app
         }
     }
     

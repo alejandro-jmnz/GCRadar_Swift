@@ -5,6 +5,9 @@
 //  Created by alumno on 11/11/25.
 //
 
+
+// Codigo de la API logo.dev
+
 import SwiftUI
 
 let LOGO_DEV_PUBLIC_KEY = "pk_Ui1Nf0MJTy6rKfHgxxBEpg"
