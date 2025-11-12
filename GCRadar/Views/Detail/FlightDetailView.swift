@@ -18,10 +18,10 @@ struct FlightDetailView: View {
                 // Cabecera basica
                 HStack {
                     VStack {
-                        Text("Origen: \(flight.origin)")
-                        Text("Destino: \(flight.destination)")
+                        Text("Origen: \(flight.origin.airport)")
+                        Text("Destino: \(flight.destination.airport)")
                     }
-                    CompanyLogo(name: domain(for: flight.airline)) 
+                    CompanyLogo(name: domain(for: flight.airline.name)) 
                     Image(systemName: "star") // Icono de favoritos
                 }
                 .padding()
