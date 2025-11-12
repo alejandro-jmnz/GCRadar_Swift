@@ -18,9 +18,19 @@ struct CompanyLogo: View {
                 .resizable()
                 .aspectRatio(contentMode: .fit)
         } placeholder: {
-            ProgressView()
+            ZStack {
+                RoundedRectangle(cornerRadius: 8, style: .continuous)
+                    .fill(Color.white.opacity(0.08))
+                ProgressView()
+                    .tint(.white)
+            }
         }
-        .frame(width: 40, height: 40)
+        .frame(width: 70, height: 40)
+        .background(
+            RoundedRectangle(cornerRadius: 12, style: .continuous)
+                .fill(Color.white.opacity(0.06))
+        )
+        .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
     }
 }
 /*
