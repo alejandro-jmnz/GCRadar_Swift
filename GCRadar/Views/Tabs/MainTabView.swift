@@ -12,6 +12,8 @@ import SwiftUI
 
 struct MainTabView: View {
     var body: some View {
+        
+        // Vista con barra inferior para poder seleccionar distintas vistas secundarias (Salidas, llegadas..)
         TabView {
             DeparturesView()
                 .tabItem {
@@ -23,6 +25,14 @@ struct MainTabView: View {
                     Label("Llegadas", systemImage: "airplane.arrival")
                 }
             
+            AirspaceView()
+                .tabItem {
+                    Label("Espacio Aéreo", systemImage: "airplane")
+                }
+            FavouritesView()
+                .tabItem {
+                    Label("Favoritos", systemImage: "star")
+                }
             // TODO poner las otras vistas
         }
     }

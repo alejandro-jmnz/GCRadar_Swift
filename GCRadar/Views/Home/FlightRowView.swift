@@ -7,25 +7,33 @@
 
 import SwiftUI
 
+enum FlightRowType {
+    case departures
+    case arrivals
+    case airspace
+}
+
 struct FlightRowView: View {
     let flight: Flight
+    let rowType: FlightRowType // Indica desde que vista se llama a esta vista
     
     var body: some View {
         
         HStack {
-            if flight.origin.iata == "LPA" {
+            switch rowType {
+            case .departures: // Vuelos que salen de GC
                 Text(flight.departureTime)
-            } else if flight.destination.iata == "LPA" {
-                Text(flight.arrivalTime)
-            } // TODO anadir un else para los que solo sobrevuelan GC
-            
-            Text(flight.identifiers.iata)
-            if flight.origin.iata == "LPA" {
+                Text(flight.identifiers.iata)
                 Text(flight.destination.airport)
-                Text(flight.durationString)
-            } else if flight.destination.iata == "LPA" {
+            case .arrivals: // Vuelos que llegan a GC
+                Text(flight.arrivalTime)
+                Text(flight.identifiers.iata)
                 Text(flight.origin.airport)
-            } // TODO anadir un else para los que solo sobrevuelan GC
+            case .airspace: // Vuelos que sobrevuelan GC
+                Text(flight.identifiers.iata)
+                Text(flight.origin.airport)
+                Text(flight.destination.airport)
+            }
             
             CompanyLogo(name: domain(for: flight.airline.name)) // Usamos la funcion para obtener el dominio de la aerolinea y poder pasarlo a la API
         }
