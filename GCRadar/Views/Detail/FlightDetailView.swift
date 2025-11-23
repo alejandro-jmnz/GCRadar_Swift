@@ -116,6 +116,9 @@ struct FlightDetailView: View {
                         Text("Mapa") // TODO anadir vista del mapa con la aeronave en tiempo real
                     }
                 }
+                
+                // Comentamos el carrousel para no gastar busquedas en la API
+                // ImageCarouselView(query: flight.aircraft.model)
             }
                 
         }
