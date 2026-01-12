@@ -10,6 +10,8 @@ import SwiftUI
 struct FlightDetailView: View {
     let flight: Flight
     @State private var isFavorite = false
+    @State private var showImages = false
+
     
     var body: some View {
         ScrollView {
@@ -118,14 +120,19 @@ struct FlightDetailView: View {
                 .background(flight.isLive ? Color.blue.opacity(0.05) : Color.gray.opacity(0.05))
                 .cornerRadius(15)
                 
-                // Botón para fotos (Placeholder para tu carrusel)
-                Button(action: { /* Acción para ver fotos */ }) {
+                // Botón para fotos (Placeholder para el carrusel)
+                Button{
+                    showImages = true
+                } label: {
                     Label("Ver fotos de la aeronave", systemImage: "photo.on.rectangle")
                         .frame(maxWidth: .infinity)
                         .padding()
                         .background(Color.blue)
                         .foregroundColor(.white)
                         .cornerRadius(12)
+                }
+                .sheet(isPresented: $showImages) {
+                    ImageCarouselView(query: flight.aircraft.model)
                 }
             }
             .padding()
