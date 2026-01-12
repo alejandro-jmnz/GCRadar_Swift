@@ -13,6 +13,7 @@ struct AirspaceView: View {
     
     var body: some View {
         NavigationView {
+            /*
             VStack {
                 // Encabezado de la lista
                 HStack {
@@ -22,7 +23,19 @@ struct AirspaceView: View {
                     Text("Destino")
                     Text("Aerolínea")
                 }
-                
+                */
+            
+            VStack {
+                // Encabezado de la lista
+                HStack {
+                    Text("N° de vuelo").bold().frame(width: 50, alignment: .leading).padding(.leading, 35)
+                    Text("Origen").bold().frame(width: 70, alignment: .leading).padding(.leading, 20)
+                    Text("Destino").bold().frame(width: 70, alignment: .leading)
+                    Text("Aerolínea").bold().frame(maxWidth: .infinity, alignment: .trailing).padding(.trailing, 35)
+                }
+                .padding(.horizontal)
+                .font(.caption)
+                .foregroundColor(.gray)
                 // Lista
                 List(flights.filter { $0.isWithinGCRange }) { flight in // Muestra los vuelos que sobrevuelan el espacio aereo de Gran Canaria
                     NavigationLink(destination: FlightDetailView(flight: flight)) {
@@ -35,7 +48,3 @@ struct AirspaceView: View {
     }
 }
 
-
-#Preview {
-    AirspaceView()
-}

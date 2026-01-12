@@ -13,6 +13,90 @@ enum FlightRowType {
     case airspace
 }
 
+
+struct FlightRowView: View {
+    let flight: Flight
+    let rowType: FlightRowType
+    
+    var body: some View {
+        HStack(alignment: .center, spacing: 10) { // Añadido spacing y alineación
+            
+            switch rowType {
+            case .departures: // Salidas desde GC
+                // 1. Hora
+                Text(flight.departureTimeFormatted)
+                    .font(.subheadline)
+                    .bold()
+                    .frame(width: 50, alignment: .leading) // Ancho fijo para alinear columna
+                
+                // 2. Número de vuelo
+                Text(flight.identifiers.iata)
+                    .font(.subheadline)
+                    .frame(width: 70, alignment: .leading)
+                
+                // 3. Destino (Aeropuerto)
+                Text(flight.destination.airport)
+                    .font(.subheadline)
+                    .lineLimit(1) // Si el nombre es muy largo, lo corta con ...
+                    .truncationMode(.tail)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                
+            case .arrivals: // Llegadas a GC
+                // 1. Hora
+                Text(flight.arrivalTimeFormatted) // Usamos la hora formateada
+                    .font(.subheadline)
+                    .bold()
+                    .frame(width: 50, alignment: .leading)
+                
+                // 2. Número de vuelo
+                Text(flight.identifiers.iata)
+                    .font(.subheadline)
+                    .frame(width: 70, alignment: .leading)
+                
+                // 3. Origen (Aeropuerto)
+                Text(flight.origin.airport)
+                    .font(.subheadline)
+                    .lineLimit(1)
+                    .truncationMode(.tail)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                
+            case .airspace: // Sobrevuelos (menos común en AviationStack free, pero mantenemos la lógica)
+                Text(flight.identifiers.iata)
+                    .bold()
+                    .frame(width: 70, alignment: .leading)
+                
+                Text(flight.origin.iata) // Usamos código IATA (ej MAD) para ahorrar espacio
+                    .frame(width: 50, alignment: .center)
+                
+                Image(systemName: "arrow.right")
+                    .font(.caption2)
+                    .foregroundColor(.gray)
+                
+                Text(flight.destination.iata)
+                    .frame(width: 50, alignment: .center)
+                    
+                Spacer() // Empuja el logo al final
+            }
+            
+            // Logo de la aerolínea
+            // Asumimos que tu vista CompanyLogo gestiona su propio tamaño,
+            // pero le ponemos un frame por si acaso.
+            CompanyLogo(name: domain(for: flight.airline.name))
+                .frame(width: 30, height: 30)
+                .clipShape(Circle()) // Opcional: hacerlo redondo
+        }
+        .padding(.vertical, 8)
+        .padding(.horizontal, 4) // Un poco de margen lateral
+    }
+}
+
+/*
+enum FlightRowType {
+    case departures
+    case arrivals
+    case airspace
+}
+
 struct FlightRowView: View {
     let flight: Flight
     let rowType: FlightRowType // Indica desde que vista se llama a esta vista
@@ -40,4 +124,4 @@ struct FlightRowView: View {
         .padding(.vertical, 8)
     }
 }
-
+*/

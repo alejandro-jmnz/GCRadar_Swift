@@ -23,7 +23,8 @@ struct FlightsMockData {
             destination: .init(airport: "Tenerife Sur (TFS)", iata: "TFS", gate: "B11", terminal: "1"),
             live: .init(latitude: 27.90, longitude: -15.30, altitude: 1800.0, speed: 310.0),
             airline: .init(name: "Binter Canarias", iata: "NT"),
-            aircraft: .init(model: "ATR 72-600", registration: "EC-NEZ")
+            aircraft: .init(model: "ATR 72-600", registration: "EC-NEZ"),
+            isLive: true
         ),
 
         // 2 — Tenerife Norte → LPA
@@ -37,7 +38,8 @@ struct FlightsMockData {
             destination: .init(airport: "Gran Canaria (LPA)", iata: "LPA", gate: "C09", terminal: "C"),
             live: .init(latitude: 28.10, longitude: -15.60, altitude: 2400.0, speed: 330.0),
             airline: .init(name: "Binter Canarias", iata: "NT"),
-            aircraft: .init(model: "ATR 72-500", registration: "EC-LQZ")
+            aircraft: .init(model: "ATR 72-500", registration: "EC-LQZ"),
+            isLive: true
         ),
 
         // 3 — LPA → Sevilla
@@ -51,7 +53,8 @@ struct FlightsMockData {
             destination: .init(airport: "Sevilla (SVQ)", iata: "SVQ", gate: "14", terminal: "1"),
             live: .init(latitude: 28.50, longitude: -14.90, altitude: 10700.0, speed: 810.0),
             airline: .init(name: "Vueling", iata: "VY"),
-            aircraft: .init(model: "Airbus A320", registration: "EC-MBH")
+            aircraft: .init(model: "Airbus A320", registration: "EC-MBH"),
+            isLive: true
         ),
 
         // 4 — LPA → Amsterdam
@@ -65,7 +68,8 @@ struct FlightsMockData {
             destination: .init(airport: "Amsterdam (AMS)", iata: "AMS", gate: "F20", terminal: "1"),
             live: .init(latitude: 28.30, longitude: -14.75, altitude: 11300.0, speed: 835.0),
             airline: .init(name: "Transavia", iata: "HV"),
-            aircraft: .init(model: "Boeing 737-800", registration: "PH-HXC")
+            aircraft: .init(model: "Boeing 737-800", registration: "PH-HXC"),
+            isLive: true
         ),
 
         // 5 — LPA → Fuerteventura
@@ -79,7 +83,8 @@ struct FlightsMockData {
             destination: .init(airport: "Fuerteventura (FUE)", iata: "FUE", gate: "2", terminal: "1"),
             live: .init(latitude: 27.70, longitude: -15.20, altitude: 1900.0, speed: 315.0),
             airline: .init(name: "Binter Canarias", iata: "NT"),
-            aircraft: .init(model: "ATR 72-600", registration: "EC-MQN")
+            aircraft: .init(model: "ATR 72-600", registration: "EC-MQN"),
+            isLive: true
         ),
 
         // 6 — Frankfurt → LPA
@@ -93,7 +98,8 @@ struct FlightsMockData {
             destination: .init(airport: "Gran Canaria (LPA)", iata: "LPA", gate: "C22", terminal: "C"),
             live: .init(latitude: 34.80, longitude: -10.90, altitude: 11700.0, speed: 860.0),
             airline: .init(name: "Lufthansa", iata: "LH"),
-            aircraft: .init(model: "Airbus A321neo", registration: "D-AIEN")
+            aircraft: .init(model: "Airbus A321neo", registration: "D-AIEN"),
+            isLive: true
         ),
 
         // 7 — London Gatwick → LPA
@@ -107,7 +113,8 @@ struct FlightsMockData {
             destination: .init(airport: "Gran Canaria (LPA)", iata: "LPA", gate: "A10", terminal: "A"),
             live: .init(latitude: 30.50, longitude: -12.50, altitude: 11200.0, speed: 840.0),
             airline: .init(name: "British Airways", iata: "BA"),
-            aircraft: .init(model: "Airbus A320neo", registration: "G-TTOE")
+            aircraft: .init(model: "Airbus A320neo", registration: "G-TTOE"),
+            isLive: true
         ),
 
         // 8 — Barcelona → LPA
@@ -121,7 +128,8 @@ struct FlightsMockData {
             destination: .init(airport: "Gran Canaria (LPA)", iata: "LPA", gate: "D07", terminal: "D"),
             live: .init(latitude: 29.40, longitude: -13.40, altitude: 10900.0, speed: 805.0),
             airline: .init(name: "Vueling", iata: "VY"),
-            aircraft: .init(model: "Airbus A321", registration: "EC-MHH")
+            aircraft: .init(model: "Airbus A321", registration: "EC-MHH"),
+            isLive: true
         ),
 
         // 9 — LPA → Valencia
@@ -135,7 +143,8 @@ struct FlightsMockData {
             destination: .init(airport: "Valencia (VLC)", iata: "VLC", gate: "C19", terminal: "1"),
             live: .init(latitude: 28.55, longitude: -14.90, altitude: 11400.0, speed: 825.0),
             airline: .init(name: "Iberia", iata: "IB"),
-            aircraft: .init(model: "Airbus A320", registration: "EC-LUK")
+            aircraft: .init(model: "Airbus A320", registration: "EC-LUK"),
+            isLive: true
         ),
 
         // 10 — LPA → Málaga
@@ -149,7 +158,8 @@ struct FlightsMockData {
             destination: .init(airport: "Málaga (AGP)", iata: "AGP", gate: "C11", terminal: "3"),
             live: .init(latitude: 28.35, longitude: -14.60, altitude: 11050.0, speed: 840.0),
             airline: .init(name: "Ryanair", iata: "FR"),
-            aircraft: .init(model: "Boeing 737-800", registration: "EI-DHC")
+            aircraft: .init(model: "Boeing 737-800", registration: "EI-DHC"),
+            isLive: true
         ),
 
         // 11 — LPA → París Orly
@@ -163,7 +173,8 @@ struct FlightsMockData {
             destination: .init(airport: "Paris Orly (ORY)", iata: "ORY", gate: "C02", terminal: "3"),
             live: .init(latitude: 28.10, longitude: -14.85, altitude: 11200.0, speed: 860.0),
             airline: .init(name: "Transavia France", iata: "TO"),
-            aircraft: .init(model: "Boeing 737-800", registration: "F-GZHF")
+            aircraft: .init(model: "Boeing 737-800", registration: "F-GZHF"),
+            isLive: true
         ),
 
         // 12 — Lisboa → LPA
@@ -177,7 +188,8 @@ struct FlightsMockData {
             destination: .init(airport: "Gran Canaria (LPA)", iata: "LPA", gate: "B08", terminal: "B"),
             live: .init(latitude: 29.80, longitude: -11.90, altitude: 10500.0, speed: 770.0),
             airline: .init(name: "TAP Air Portugal", iata: "TP"),
-            aircraft: .init(model: "Airbus A320neo", registration: "CS-TVB")
+            aircraft: .init(model: "Airbus A320neo", registration: "CS-TVB"),
+            isLive: true
         ),
 
         // --------------------------------------------
@@ -194,7 +206,8 @@ struct FlightsMockData {
             destination: .init(airport: "Nouakchott (NKC)", iata: "NKC", gate: "3", terminal: nil),
             live: .init(latitude: 27.90, longitude: -15.50, altitude: 11500.0, speed: 825.0),
             airline: .init(name: "Air France", iata: "AF"),
-            aircraft: .init(model: "Airbus A330-200", registration: "F-GZCH")
+            aircraft: .init(model: "Airbus A330-200", registration: "F-GZCH"),
+            isLive: true
         ),
 
         Flight(
@@ -207,7 +220,8 @@ struct FlightsMockData {
             destination: .init(airport: "Paramaribo (PBM)", iata: "PBM", gate: nil, terminal: nil),
             live: .init(latitude: 28.40, longitude: -14.95, altitude: 11250.0, speed: 850.0),
             airline: .init(name: "KLM", iata: "KL"),
-            aircraft: .init(model: "Boeing 777-300ER", registration: "PH-BVV")
+            aircraft: .init(model: "Boeing 777-300ER", registration: "PH-BVV"),
+            isLive: true
         ),
 
         Flight(
@@ -220,7 +234,8 @@ struct FlightsMockData {
             destination: .init(airport: "São Paulo (GRU)", iata: "GRU", gate: nil, terminal: nil),
             live: .init(latitude: 27.20, longitude: -15.40, altitude: 11800.0, speed: 880.0),
             airline: .init(name: "Iberia", iata: "IB"),
-            aircraft: .init(model: "Airbus A350-900", registration: "EC-NBG")
+            aircraft: .init(model: "Airbus A350-900", registration: "EC-NBG"),
+            isLive: true
         )
     ]
 }
