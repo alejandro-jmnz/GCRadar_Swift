@@ -11,6 +11,7 @@ import FirebaseCore
 @main
 struct GCRadarApp: App {
     @StateObject private var authViewModel = AuthViewModel()
+    @StateObject private var favoritesViewModel = FavoritesViewModel()
     
     init() {
         // Inicializar Firebase
@@ -21,7 +22,11 @@ struct GCRadarApp: App {
         WindowGroup {
             Group {
                 if authViewModel.isAuthenticated {
-                    MainTabView(authViewModel: authViewModel)
+                    MainTabView(authViewModel: authViewModel, favoritesViewModel: favoritesViewModel)
+                        .task {
+                            // Cargar favoritos cuando el usuario inicie sesión
+                            await favoritesViewModel.loadFavoriteFlightNumbers()
+                        }
                 } else {
                     AuthRootView(authViewModel: authViewModel)
                 }

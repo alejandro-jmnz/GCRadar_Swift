@@ -10,6 +10,7 @@ import SwiftUI
 struct ArrivalsView: View {
     // Usamos el ViewModel
     @StateObject private var viewModel = FlightsViewModel()
+    @ObservedObject var favoritesViewModel: FavoritesViewModel
     
     var body: some View {
         NavigationView {
@@ -38,7 +39,7 @@ struct ArrivalsView: View {
                     List(viewModel.flights) { flight in
                         NavigationLink(destination: FlightDetailView(flight: flight)) {
                             // Asumiendo que FlightRowView ya existe y funciona con tu modelo Flight
-                            FlightRowView(flight: flight, rowType: .arrivals)
+                            FlightRowView(flight: flight, rowType: .arrivals, favoritesViewModel: favoritesViewModel)
                         }
                     }
                     .refreshable {

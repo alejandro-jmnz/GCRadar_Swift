@@ -10,6 +10,7 @@ import SwiftUI
 struct AirspaceView: View {
     // Modelo de prueba mientras no haya una API conectada
     let flights = FlightsMockData.flights
+    @ObservedObject var favoritesViewModel: FavoritesViewModel?
     
     var body: some View {
         NavigationView {
@@ -39,7 +40,7 @@ struct AirspaceView: View {
                 // Lista
                 List(flights.filter { $0.isWithinGCRange }) { flight in // Muestra los vuelos que sobrevuelan el espacio aereo de Gran Canaria
                     NavigationLink(destination: FlightDetailView(flight: flight)) {
-                        FlightRowView(flight: flight, rowType: .airspace)
+                        FlightRowView(flight: flight, rowType: .airspace, favoritesViewModel: favoritesViewModel)
                     }
                 }
             }

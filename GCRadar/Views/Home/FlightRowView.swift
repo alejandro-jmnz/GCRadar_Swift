@@ -17,6 +17,13 @@ enum FlightRowType {
 struct FlightRowView: View {
     let flight: Flight
     let rowType: FlightRowType
+    @ObservedObject var favoritesViewModel: FavoritesViewModel?
+    
+    init(flight: Flight, rowType: FlightRowType, favoritesViewModel: FavoritesViewModel? = nil) {
+        self.flight = flight
+        self.rowType = rowType
+        self.favoritesViewModel = favoritesViewModel
+    }
     
     var body: some View {
         HStack(alignment: .center, spacing: 10) { // Añadido spacing y alineación
@@ -84,6 +91,24 @@ struct FlightRowView: View {
             CompanyLogo(name: domain(for: flight.airline.name))
                 .frame(width: 30, height: 30)
                 .clipShape(Circle()) // Opcional: hacerlo redondo
+            
+            // Indicador de favorito
+            if let favoritesViewModel = favoritesViewModel {
+                Button(action: {
+                    Task {
+                        await favoritesViewModel.toggleFavorite(
+                            flight.identifiers.iata,
+                            airline: flight.airline.name
+                        )
+                    }
+                }) {
+                    Image(systemName: favoritesViewModel.isFavoriteFlight(flight.identifiers.iata) ? "star.fill" : "star")
+                        .foregroundColor(favoritesViewModel.isFavoriteFlight(flight.identifiers.iata) ? .yellow : .gray)
+                        .font(.system(size: 16))
+                }
+                .buttonStyle(PlainButtonStyle())
+                .padding(.leading, 8)
+            }
         }
         .padding(.vertical, 8)
         .padding(.horizontal, 4) // Un poco de margen lateral

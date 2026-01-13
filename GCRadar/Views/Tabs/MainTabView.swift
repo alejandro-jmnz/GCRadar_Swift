@@ -12,26 +12,27 @@ import SwiftUI
 
 struct MainTabView: View {
     @ObservedObject var authViewModel: AuthViewModel
+    @ObservedObject var favoritesViewModel: FavoritesViewModel
     
     var body: some View {
         
         // Vista con barra inferior para poder seleccionar distintas vistas secundarias (Salidas, llegadas..)
         TabView {
-            DeparturesView()
+            DeparturesView(favoritesViewModel: favoritesViewModel)
                 .tabItem {
                     Label("Salidas", systemImage: "airplane.departure")
                 }
             
-            ArrivalsView()
+            ArrivalsView(favoritesViewModel: favoritesViewModel)
                 .tabItem {
                     Label("Llegadas", systemImage: "airplane.arrival")
                 }
             
-            AirspaceView()
+            AirspaceView(favoritesViewModel: favoritesViewModel)
                 .tabItem {
                     Label("Espacio Aéreo", systemImage: "airplane")
                 }
-            FavouritesView()
+            FavouritesView(favoritesViewModel: favoritesViewModel)
                 .tabItem {
                     Label("Favoritos", systemImage: "star")
                 }
@@ -46,5 +47,5 @@ struct MainTabView: View {
 
 
 #Preview {
-    MainTabView(authViewModel: AuthViewModel())
+    MainTabView(authViewModel: AuthViewModel(), favoritesViewModel: FavoritesViewModel())
 }
