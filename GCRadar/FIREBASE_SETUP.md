@@ -1,6 +1,6 @@
 # Configuración de Firebase para GCRadar
 
-Este documento contiene las instrucciones paso a paso para configurar Firebase Authentication en tu proyecto iOS.
+Este documento contiene las instrucciones paso a paso para configurar Firebase Authentication y Cloud Firestore en tu proyecto iOS.
 
 ## Requisitos Previos
 
@@ -61,7 +61,53 @@ El archivo `GoogleService-Info.plist` debe estar en la raíz del proyecto, al mi
 5. Habilita el primer toggle (Email/Password)
 6. Haz clic en "Save"
 
-## Paso 7: Instalar Firebase SDK mediante Swift Package Manager
+## Paso 7: Habilitar Cloud Firestore en Firebase Console
+
+1. En Firebase Console, ve a "Firestore Database" en el menú lateral
+2. Haz clic en "Create database"
+3. Selecciona "Start in test mode" (para desarrollo)
+4. Selecciona la ubicación de la base de datos (elige la más cercana a tus usuarios)
+5. Haz clic en "Enable"
+6. **IMPORTANTE**: Para producción, asegúrate de configurar las reglas de seguridad adecuadas
+
+### Configurar Reglas de Seguridad (Recomendado para desarrollo)
+
+1. En Firestore Database, ve a la pestaña "Rules"
+2. Para desarrollo, puedes usar estas reglas básicas:
+   ```javascript
+   rules_version = '2';
+   service cloud.firestore {
+     match /databases/{database}/documents {
+       // Permitir acceso solo a usuarios autenticados
+       match /users/{userId} {
+         // Solo el usuario puede acceder a sus propios datos
+         allow read, write: if request.auth != null && request.auth.uid == userId;
+         
+         // Permitir acceso a favoritos del usuario
+         match /favorites/{favoriteId} {
+           allow read, write: if request.auth != null && request.auth.uid == userId;
+         }
+       }
+     }
+   }
+   ```
+3. Haz clic en "Publish"
+
+## Paso 8: Instalar Firebase SDK mediante Swift Package Manager
+
+### Si ya tienes Firebase instalado (solo agregar Firestore):
+
+1. En Xcode, ve a: **File → Add Package Dependencies...**
+2. Si ya tienes Firebase instalado, busca el paquete existente en la lista
+3. Si no, ingresa la URL: `https://github.com/firebase/firebase-ios-sdk`
+4. Haz clic en "Add Package" o selecciona el paquete existente
+5. En la ventana de selección de productos, asegúrate de tener marcados:
+   - ✅ **FirebaseAuth** (ya deberías tenerlo)
+   - ✅ **FirebaseCore** (ya deberías tenerlo)
+   - ✅ **FirebaseFirestore** (NUEVO - agrégalo ahora)
+6. Haz clic en "Add Package"
+
+### Si es la primera vez instalando Firebase:
 
 1. En Xcode, ve a: **File → Add Package Dependencies...**
 2. Ingresa la URL: `https://github.com/firebase/firebase-ios-sdk`
@@ -70,9 +116,10 @@ El archivo `GoogleService-Info.plist` debe estar en la raíz del proyecto, al mi
 5. Selecciona los siguientes productos:
    - ✅ **FirebaseAuth**
    - ✅ **FirebaseCore**
+   - ✅ **FirebaseFirestore**
 6. Haz clic en "Add Package"
 
-## Paso 8: Verificar la Configuración
+## Paso 9: Verificar la Configuración
 
 1. Abre `GCRadarApp.swift`
 2. Verifica que tenga:
@@ -84,7 +131,14 @@ El archivo `GoogleService-Info.plist` debe estar en la raíz del proyecto, al mi
    FirebaseApp.configure()
    ```
 
-## Paso 9: Probar la Configuración
+4. Abre `FavoritesViewModel.swift`
+5. Verifica que tenga:
+   ```swift
+   import FirebaseAuth
+   import FirebaseFirestore
+   ```
+
+## Paso 10: Probar la Configuración
 
 1. Ejecuta la app en el simulador o dispositivo
 2. Deberías ver la pantalla de Login/Register
@@ -108,10 +162,41 @@ El archivo `GoogleService-Info.plist` debe estar en la raíz del proyecto, al mi
 - Revisa que el proyecto Firebase esté activo
 - Verifica tu conexión a internet
 
+### Error: "No module named 'FirebaseFirestore'"
+- Asegúrate de haber agregado **FirebaseFirestore** en el paso 8
+- Limpia el build: **Product → Clean Build Folder** (⇧⌘K)
+- Cierra y vuelve a abrir Xcode
+- Reconstruye el proyecto: **Product → Build** (⌘B)
+
+### Error de permisos en Firestore
+- Verifica que las reglas de seguridad estén configuradas correctamente
+- Asegúrate de que el usuario esté autenticado antes de usar Firestore
+- Revisa la consola de Firebase para ver los errores específicos
+
+## Estructura de Datos en Firestore
+
+La app guarda los favoritos en la siguiente estructura:
+
+```
+users/
+  └── {userId}/
+      └── favorites/
+          └── {flightNumber}/
+              ├── flightNumber: "IB347"
+              ├── airline: "Iberia" (opcional)
+              └── createdAt: Timestamp
+```
+
+Donde:
+- `{userId}` es el UID del usuario autenticado
+- `{flightNumber}` es el número de vuelo normalizado (ej: "IB347")
+
 ## Recursos Adicionales
 
 - [Documentación oficial de Firebase iOS](https://firebase.google.com/docs/ios/setup)
 - [Firebase Authentication Docs](https://firebase.google.com/docs/auth/ios/start)
+- [Cloud Firestore Docs](https://firebase.google.com/docs/firestore/ios/start)
+- [Firestore Security Rules](https://firebase.google.com/docs/firestore/security/get-started)
 
 ---
 
