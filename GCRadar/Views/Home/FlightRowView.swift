@@ -17,7 +17,7 @@ enum FlightRowType {
 struct FlightRowView: View {
     let flight: Flight
     let rowType: FlightRowType
-    @ObservedObject var favoritesViewModel: FavoritesViewModel?
+    let favoritesViewModel: FavoritesViewModel?
     
     init(flight: Flight, rowType: FlightRowType, favoritesViewModel: FavoritesViewModel? = nil) {
         self.flight = flight

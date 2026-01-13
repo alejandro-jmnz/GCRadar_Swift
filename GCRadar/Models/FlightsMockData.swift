@@ -14,8 +14,8 @@ struct FlightsMockData {
     static let flights: [Flight] = [
         // 1 — LPA → Tenerife Sur
         Flight(
-            departureTime: "06:20",
-            arrivalTime: "06:55",
+            departureTime: "2024-01-15T06:20:00+00:00",
+            arrivalTime: "2024-01-15T06:55:00+00:00",
             departureDelay: 1,
             arrivalDelay: 0,
             identifiers: .init(iata: "NT221", icao: "IBB221"),
@@ -29,8 +29,8 @@ struct FlightsMockData {
 
         // 2 — Tenerife Norte → LPA
         Flight(
-            departureTime: "06:45",
-            arrivalTime: "07:25",
+            departureTime: "2024-01-15T06:45:00+00:00",
+            arrivalTime: "2024-01-15T07:25:00+00:00",
             departureDelay: 0,
             arrivalDelay: 2,
             identifiers: .init(iata: "NT111", icao: "IBB111"),
@@ -44,8 +44,8 @@ struct FlightsMockData {
 
         // 3 — LPA → Sevilla
         Flight(
-            departureTime: "07:10",
-            arrivalTime: "10:55",
+            departureTime: "2024-01-15T07:10:00+00:00",
+            arrivalTime: "2024-01-15T10:55:00+00:00",
             departureDelay: 0,
             arrivalDelay: 4,
             identifiers: .init(iata: "VY3182", icao: "VLG3182"),
@@ -59,8 +59,8 @@ struct FlightsMockData {
 
         // 4 — LPA → Amsterdam
         Flight(
-            departureTime: "07:55",
-            arrivalTime: "13:25",
+            departureTime: "2024-01-15T07:55:00+00:00",
+            arrivalTime: "2024-01-15T13:25:00+00:00",
             departureDelay: 3,
             arrivalDelay: 0,
             identifiers: .init(iata: "HV5666", icao: "TRA5666"),
@@ -74,8 +74,8 @@ struct FlightsMockData {
 
         // 5 — LPA → Fuerteventura
         Flight(
-            departureTime: "08:10",
-            arrivalTime: "08:45",
+            departureTime: "2024-01-15T08:10:00+00:00",
+            arrivalTime: "2024-01-15T08:45:00+00:00",
             departureDelay: 0,
             arrivalDelay: 1,
             identifiers: .init(iata: "NT512", icao: "IBB512"),
@@ -89,8 +89,8 @@ struct FlightsMockData {
 
         // 6 — Frankfurt → LPA
         Flight(
-            departureTime: "06:20",
-            arrivalTime: "10:35",
+            departureTime: "2024-01-15T06:20:00+00:00",
+            arrivalTime: "2024-01-15T10:35:00+00:00",
             departureDelay: 5,
             arrivalDelay: 0,
             identifiers: .init(iata: "LH1504", icao: "DLH1504"),
@@ -104,8 +104,8 @@ struct FlightsMockData {
 
         // 7 — London Gatwick → LPA
         Flight(
-            departureTime: "08:45",
-            arrivalTime: "12:55",
+            departureTime: "2024-01-15T08:45:00+00:00",
+            arrivalTime: "2024-01-15T12:55:00+00:00",
             departureDelay: 0,
             arrivalDelay: 2,
             identifiers: .init(iata: "BA2730", icao: "BAW2730"),
@@ -119,8 +119,8 @@ struct FlightsMockData {
 
         // 8 — Barcelona → LPA
         Flight(
-            departureTime: "09:20",
-            arrivalTime: "12:05",
+            departureTime: "2024-01-15T09:20:00+00:00",
+            arrivalTime: "2024-01-15T12:05:00+00:00",
             departureDelay: 0,
             arrivalDelay: 3,
             identifiers: .init(iata: "VY3065", icao: "VLG3065"),
@@ -134,8 +134,8 @@ struct FlightsMockData {
 
         // 9 — LPA → Valencia
         Flight(
-            departureTime: "10:05",
-            arrivalTime: "13:35",
+            departureTime: "2024-01-15T10:05:00+00:00",
+            arrivalTime: "2024-01-15T13:35:00+00:00",
             departureDelay: 2,
             arrivalDelay: 0,
             identifiers: .init(iata: "IB8542", icao: "IBE8542"),
@@ -149,8 +149,8 @@ struct FlightsMockData {
 
         // 10 — LPA → Málaga
         Flight(
-            departureTime: "10:40",
-            arrivalTime: "14:05",
+            departureTime: "2024-01-15T10:40:00+00:00",
+            arrivalTime: "2024-01-15T14:05:00+00:00",
             departureDelay: 1,
             arrivalDelay: 6,
             identifiers: .init(iata: "FR2921", icao: "RYR2921"),
@@ -164,8 +164,8 @@ struct FlightsMockData {
 
         // 11 — LPA → París Orly
         Flight(
-            departureTime: "11:25",
-            arrivalTime: "16:00",
+            departureTime: "2024-01-15T11:25:00+00:00",
+            arrivalTime: "2024-01-15T16:00:00+00:00",
             departureDelay: 0,
             arrivalDelay: 3,
             identifiers: .init(iata: "TO7631", icao: "TVF7631"),
@@ -179,8 +179,8 @@ struct FlightsMockData {
 
         // 12 — Lisboa → LPA
         Flight(
-            departureTime: "12:05",
-            arrivalTime: "14:15",
+            departureTime: "2024-01-15T12:05:00+00:00",
+            arrivalTime: "2024-01-15T14:15:00+00:00",
             departureDelay: 0,
             arrivalDelay: 1,
             identifiers: .init(iata: "TP1120", icao: "TAP1120"),
@@ -197,8 +197,8 @@ struct FlightsMockData {
         // --------------------------------------------
 
         Flight(
-            departureTime: "11:00",
-            arrivalTime: "13:40",
+            departureTime: "2024-01-15T11:00:00+00:00",
+            arrivalTime: "2024-01-15T13:40:00+00:00",
             departureDelay: 1,
             arrivalDelay: 0,
             identifiers: .init(iata: "AF732", icao: "AFR732"),
@@ -211,8 +211,8 @@ struct FlightsMockData {
         ),
 
         Flight(
-            departureTime: "13:15",
-            arrivalTime: "16:00",
+            departureTime: "2024-01-15T13:15:00+00:00",
+            arrivalTime: "2024-01-15T16:00:00+00:00",
             departureDelay: 0,
             arrivalDelay: 0,
             identifiers: .init(iata: "KL713", icao: "KLM713"),
@@ -225,8 +225,8 @@ struct FlightsMockData {
         ),
 
         Flight(
-            departureTime: "14:25",
-            arrivalTime: "18:10",
+            departureTime: "2024-01-15T14:25:00+00:00",
+            arrivalTime: "2024-01-15T18:10:00+00:00",
             departureDelay: 4,
             arrivalDelay: 7,
             identifiers: .init(iata: "IB6081", icao: "IBE6081"),

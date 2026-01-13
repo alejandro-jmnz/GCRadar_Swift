@@ -15,7 +15,7 @@ struct FavouritesView: View {
     
     // Vuelos favoritos filtrados
     private var favoriteFlights: [Flight] {
-        let allFlights = arrivalsViewModel.flights + departuresViewModel.flights
+        let allFlights = arrivalsViewModel.flights + departuresViewModel.flights + FlightsMockData.flights
         return allFlights.filter { flight in
             favoritesViewModel.isFavoriteFlight(flight.identifiers.iata)
         }
@@ -58,9 +58,7 @@ struct FavouritesView: View {
                     // Lista de vuelos favoritos
                     List(favoriteFlights) { flight in
                         NavigationLink(destination: FlightDetailView(flight: flight)) {
-                            // Determinar el tipo de fila basado en si es llegada o salida
-                            let rowType: FlightRowType = flight.destination.iata == "LPA" ? .arrivals : .departures
-                            FlightRowView(flight: flight, rowType: rowType, favoritesViewModel: favoritesViewModel)
+                            FlightRowView(flight: flight, rowType: .airspace, favoritesViewModel: favoritesViewModel)
                         }
                     }
                     .refreshable {
@@ -94,8 +92,4 @@ struct FavouritesView: View {
         
         isLoading = false
     }
-}
-
-#Preview {
-    FavouritesView(favoritesViewModel: FavoritesViewModel())
 }

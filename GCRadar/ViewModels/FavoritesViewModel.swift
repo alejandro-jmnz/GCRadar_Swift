@@ -53,12 +53,6 @@ class FavoritesViewModel: ObservableObject {
         return db.collection("users").document(uid).collection("favorites")
     }
     
-    /// Normaliza el número de vuelo: elimina espacios y convierte a mayúsculas
-    /// - Parameter flightNumber: Número de vuelo a normalizar
-    /// - Returns: Número de vuelo normalizado
-    private func normalizeFlightNumber(_ flightNumber: String) -> String {
-        return flightNumber.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
-    }
     
     /// Añade un número de vuelo a favoritos
     /// - Parameters:
@@ -70,17 +64,16 @@ class FavoritesViewModel: ObservableObject {
             return
         }
         
-        let normalizedFlightNumber = normalizeFlightNumber(flightNumber)
         
         isLoading = true
         errorMessage = nil
         
         do {
-            // El ID del documento es el propio flightNumber normalizado
-            let favoriteRef = favoritesCollection.document(normalizedFlightNumber)
+            // El ID del documento es el propio flightNumber
+            let favoriteRef = favoritesCollection.document(flightNumber)
             
             var data: [String: Any] = [
-                "flightNumber": normalizedFlightNumber,
+                "flightNumber": flightNumber,
                 "createdAt": FieldValue.serverTimestamp()
             ]
             
@@ -91,7 +84,7 @@ class FavoritesViewModel: ObservableObject {
             try await favoriteRef.setData(data)
             
             // Actualizar el Set en memoria
-            favoriteFlightNumbers.insert(normalizedFlightNumber)
+            favoriteFlightNumbers.insert(flightNumber)
             isLoading = false
         } catch {
             errorMessage = "Error al añadir favorito: \(error.localizedDescription)"
@@ -107,16 +100,14 @@ class FavoritesViewModel: ObservableObject {
             return
         }
         
-        let normalizedFlightNumber = normalizeFlightNumber(flightNumber)
-        
         isLoading = true
         errorMessage = nil
         
         do {
-            try await favoritesCollection.document(normalizedFlightNumber).delete()
+            try await favoritesCollection.document(flightNumber).delete()
             
             // Actualizar el Set en memoria
-            favoriteFlightNumbers.remove(normalizedFlightNumber)
+            favoriteFlightNumbers.remove(flightNumber)
             isLoading = false
         } catch {
             errorMessage = "Error al eliminar favorito: \(error.localizedDescription)"
@@ -156,8 +147,7 @@ class FavoritesViewModel: ObservableObject {
     /// - Parameter flightNumber: Número de vuelo a verificar
     /// - Returns: true si el vuelo está en favoritos
     func isFavoriteFlight(_ flightNumber: String) -> Bool {
-        let normalizedFlightNumber = normalizeFlightNumber(flightNumber)
-        return favoriteFlightNumbers.contains(normalizedFlightNumber)
+        return favoriteFlightNumbers.contains(flightNumber)
     }
     
     /// Alterna el estado de favorito de un vuelo

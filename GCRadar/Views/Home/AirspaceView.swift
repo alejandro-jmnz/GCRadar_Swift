@@ -10,7 +10,7 @@ import SwiftUI
 struct AirspaceView: View {
     // Modelo de prueba mientras no haya una API conectada
     let flights = FlightsMockData.flights
-    @ObservedObject var favoritesViewModel: FavoritesViewModel?
+    @ObservedObject var favoritesViewModel: FavoritesViewModel
     
     var body: some View {
         NavigationView {
