@@ -11,6 +11,8 @@
 import SwiftUI
 
 struct MainTabView: View {
+    @ObservedObject var authViewModel: AuthViewModel
+    
     var body: some View {
         
         // Vista con barra inferior para poder seleccionar distintas vistas secundarias (Salidas, llegadas..)
@@ -33,12 +35,16 @@ struct MainTabView: View {
                 .tabItem {
                     Label("Favoritos", systemImage: "star")
                 }
-            // TODO poner las otras vistas
+            
+            ProfileView(authViewModel: authViewModel)
+                .tabItem {
+                    Label("Perfil", systemImage: "person.circle")
+                }
         }
     }
 }
 
 
 #Preview {
-    MainTabView()
+    MainTabView(authViewModel: AuthViewModel())
 }

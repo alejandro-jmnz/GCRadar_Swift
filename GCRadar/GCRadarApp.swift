@@ -6,12 +6,26 @@
 //
 
 import SwiftUI
+import FirebaseCore
 
 @main
 struct GCRadarApp: App {
+    @StateObject private var authViewModel = AuthViewModel()
+    
+    init() {
+        // Inicializar Firebase
+        FirebaseApp.configure()
+    }
+    
     var body: some Scene {
         WindowGroup {
-            MainTabView()
+            Group {
+                if authViewModel.isAuthenticated {
+                    MainTabView(authViewModel: authViewModel)
+                } else {
+                    AuthRootView(authViewModel: authViewModel)
+                }
+            }
         }
     }
 }
