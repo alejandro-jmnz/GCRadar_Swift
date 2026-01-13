@@ -46,7 +46,7 @@ enum AuthError: LocalizedError {
     /// Convierte errores de Firebase a AuthError
     static func fromFirebaseError(_ error: Error) -> AuthError {
         let nsError = error as NSError
-        guard let errorCode = AuthErrorCode.Code(rawValue: nsError.code) else {
+        guard let errorCode = AuthErrorCode(rawValue: nsError.code) else {
             return .unknownError(error.localizedDescription)
         }
         
