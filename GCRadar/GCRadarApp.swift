@@ -7,6 +7,7 @@
 
 import SwiftUI
 import FirebaseCore
+import GoogleMaps
 
 @main
 struct GCRadarApp: App {
@@ -16,6 +17,9 @@ struct GCRadarApp: App {
     init() {
         // Inicializar Firebase
         FirebaseApp.configure()
+        
+        // Inicializar Google Maps
+        GMSServices.provideAPIKey("PON_AQUI_TU_API_KEY_DE_GOOGLE_MAPS")
     }
     
     var body: some Scene {

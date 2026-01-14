@@ -120,6 +120,20 @@ struct FlightDetailView: View {
                 .background(flight.isLive ? Color.blue.opacity(0.05) : Color.gray.opacity(0.05))
                 .cornerRadius(15)
                 
+                // --- MAPA CON LA POSICIÓN DEL VUELO ---
+                if flight.isLive {
+                    VStack(alignment: .leading, spacing: 8) {
+                        Text("Posición en el mapa")
+                            .font(.headline)
+                        
+                        FlightMapView(latitude: flight.live.latitude,
+                                      longitude: flight.live.longitude)
+                        .frame(height: 260)
+                        .cornerRadius(15)
+                        .clipped()
+                    }
+                }
+                
                 // Botón para fotos (Placeholder para el carrusel)
                 Button{
                     showImages = true
