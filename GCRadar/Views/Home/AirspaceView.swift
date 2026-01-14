@@ -8,11 +8,24 @@
 import SwiftUI
 
 struct AirspaceView: View {
-    @StateObject private var viewModel = AirspaceViewModel()
+    // Modelo de prueba mientras no haya una API conectada
+    let flights = FlightsMockData.flights
     @ObservedObject var favoritesViewModel: FavoritesViewModel
     
     var body: some View {
         NavigationView {
+            /*
+            VStack {
+                // Encabezado de la lista
+                HStack {
+                    // TODO Anadir estilos
+                    Text("N° de vuelo")
+                    Text("Origen")
+                    Text("Destino")
+                    Text("Aerolínea")
+                }
+                */
+            
             VStack {
                 // Encabezado de la lista
                 HStack {
@@ -24,39 +37,14 @@ struct AirspaceView: View {
                 .padding(.horizontal)
                 .font(.caption)
                 .foregroundColor(.gray)
-                
-                // Contenido principal
-                if viewModel.isLoading {
-                    ProgressView("Cargando espacio aéreo...")
-                        .padding()
-                } else if let error = viewModel.errorMessage {
-                    VStack(spacing: 8) {
-                        Text(error)
-                            .font(.footnote)
-                            .foregroundColor(.red)
-                            .multilineTextAlignment(.center)
-                        Button("Reintentar") {
-                            viewModel.loadAirspaceFlights()
-                        }
-                        .padding(.top, 4)
-                    }
-                    .padding()
-                } else {
-                    // Lista de vuelos que sobrevuelan el espacio aéreo de Gran Canaria
-                    List(viewModel.flights) { flight in
-                        NavigationLink(destination: FlightDetailView(flight: flight)) {
-                            FlightRowView(flight: flight, rowType: .airspace, favoritesViewModel: favoritesViewModel)
-                        }
+                // Lista
+                List(flights.filter { $0.isWithinGCRange }) { flight in // Muestra los vuelos que sobrevuelan el espacio aereo de Gran Canaria
+                    NavigationLink(destination: FlightDetailView(flight: flight)) {
+                        FlightRowView(flight: flight, rowType: .airspace, favoritesViewModel: favoritesViewModel)
                     }
                 }
             }
             .navigationTitle(Text("Espacio Aéreo")) // TODO anadir el logo de la app
-            .onAppear {
-                // Solo cargamos si aún no tenemos datos
-                if viewModel.flights.isEmpty {
-                    viewModel.loadAirspaceFlights()
-                }
-            }
         }
     }
 }
