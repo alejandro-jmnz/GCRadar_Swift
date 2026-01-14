@@ -15,7 +15,6 @@ struct MainTabView: View {
     @ObservedObject var favoritesViewModel: FavoritesViewModel
     
     var body: some View {
-        
         // Vista con barra inferior para poder seleccionar distintas vistas secundarias (Salidas, llegadas..)
         TabView {
             DeparturesView(favoritesViewModel: favoritesViewModel)
@@ -41,6 +40,14 @@ struct MainTabView: View {
                 .tabItem {
                     Label("Perfil", systemImage: "person.circle")
                 }
+        }
+        .overlay(alignment: .topTrailing) {
+            Image("GCRadar_logo")
+                .resizable()
+                .scaledToFit()
+                .frame(width: 36, height: 36)
+                .padding(.top, 8)
+                .padding(.trailing, 16)
         }
     }
 }

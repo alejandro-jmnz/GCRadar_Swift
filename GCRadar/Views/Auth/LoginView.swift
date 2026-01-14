@@ -22,9 +22,10 @@ struct LoginView: View {
         VStack(spacing: 24) {
             // Header
             VStack(spacing: 8) {
-                Image(systemName: "airplane.circle.fill")
-                    .font(.system(size: 60))
-                    .foregroundColor(.blue)
+                Image("GCRadar_logo")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 100, height: 100)
                 
                 Text("GCRadar")
                     .font(.largeTitle)

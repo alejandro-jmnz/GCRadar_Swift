@@ -41,9 +41,10 @@ struct RegisterView: View {
             VStack(spacing: 24) {
                 // Header
                 VStack(spacing: 8) {
-                    Image(systemName: "person.badge.plus")
-                        .font(.system(size: 60))
-                        .foregroundColor(.blue)
+                    Image("GCRadar_logo")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 100, height: 100)
                     
                     Text("Crear Cuenta")
                         .font(.largeTitle)
