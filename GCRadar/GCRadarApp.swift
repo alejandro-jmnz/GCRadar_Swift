@@ -19,7 +19,7 @@ struct GCRadarApp: App {
         FirebaseApp.configure()
         
         // Inicializar Google Maps
-        GMSServices.provideAPIKey("PON_AQUI_TU_API_KEY_DE_GOOGLE_MAPS")
+        GMSServices.provideAPIKey("AIzaSyDPCthgk7mJPla-JguswYnPkDRbezYaSuY")
     }
     
     var body: some Scene {
