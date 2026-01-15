@@ -159,7 +159,7 @@ struct FlightDetailView: View {
             } label: {
                 Image(systemName: isFavorite ? "star.fill" : "star")
                     .foregroundColor(isFavorite ? .yellow : .gray)
-            }
+            }.padding(40)
         }
     }
 }

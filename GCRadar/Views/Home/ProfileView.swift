@@ -57,7 +57,3 @@ struct ProfileView: View {
     }
 }
 
-#Preview {
-    let authViewModel = AuthViewModel()
-    return ProfileView(authViewModel: authViewModel)
-}
